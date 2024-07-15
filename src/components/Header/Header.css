@@ -1,0 +1,14 @@
+.Header {
+    background-color: #262626;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 30px 50px;
+    /* -webkit-box-shadow: 0px 5px 17px 9px rgba(34, 113, 209, 1); */
+    /* -moz-box-shadow: 0px 5px 17px 9px rgba(34, 113, 209, 1); */
+    box-shadow: 0px 5px 17px 9px rgba(34, 113, 209, 1);
+}
+
+.container-buttons button{
+    margin: 0 0px 0 40px;
+}

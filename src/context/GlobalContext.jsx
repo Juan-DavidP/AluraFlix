@@ -15,16 +15,17 @@ const GlobalContextProvider = ({ children }) => {
         "BACK END": [],
         "INNOVACIÓN Y GESTIÓN": []
     });
-    const clavesCards = Object.keys(cards)
+
+    const categoriasCards = Object.keys(cards)
 
     useEffect(() => {
-        const getCards = async () => {
+        async function getCards() {
             try {
                 const response = await fetch('http://localhost:3001/videos');
                 const data = await response.json();
                 const categoriasVideos = data.reduce((categorias, card) => {
                     const categoria = card.category;
-                    for (const nombre of clavesCards) {
+                    for (const nombre of categoriasCards) {
                         if (!categorias[nombre]) {
                             categorias[nombre] = [];
                         }
@@ -42,8 +43,25 @@ const GlobalContextProvider = ({ children }) => {
         getCards()
     }, [])
 
+    async function createCard(title, category, photo, link, description) {
+        return fetch(
+            'http://localhost:3001/videos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', },
+            body: JSON.stringify({
+                title,
+                category,
+                photo,
+                link,
+                description
+            })
+        }).then((res) => res.json()).catch((error) => console.error(error))
+    }
+
+
+
     return (
-        <GlobalContext.Provider value={{ cards, colors, clavesCards }}>
+        <GlobalContext.Provider value={{ cards, colors, categoriasCards, createCard }}>
             {children}
         </GlobalContext.Provider>
     )

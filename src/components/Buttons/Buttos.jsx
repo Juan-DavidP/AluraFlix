@@ -15,12 +15,13 @@ const ButtonEstilizado = styled.button`
 `
 // condicion? lo que sucede : el sino
 
-const Button = ({ nombre, bordo, type, link }) => {
+const Button = ({ nombre, bordo, tipo, link }) => {
     const validacion = window.location.pathname === link ? true : false;
     const bordoActivo = window.location.pathname === link || bordo === true ? true : false;
     return (
+        //error por el link toca seperar botones formulario y cabecera
         <Link to={link}>
-            <ButtonEstilizado type={type} $bordo={bordoActivo} $activo={validacion}>
+            <ButtonEstilizado type={tipo} $bordo={bordoActivo} $activo={validacion}>
                 {nombre}  </ButtonEstilizado>
         </Link>
     )

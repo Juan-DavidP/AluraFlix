@@ -6,8 +6,6 @@ import Container from "../components/Container"
 import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
 import { GlobalContext } from "../context/GlobalContext"
-import Modal from "../components/Modal"
-
 
 const Home = () => {
     const { cards, colors, } = useContext(GlobalContext);

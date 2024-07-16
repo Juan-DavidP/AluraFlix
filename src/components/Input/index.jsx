@@ -13,7 +13,7 @@ margin-bottom: 18px;
 }
 `
 
-const Input = ({ placeholder, color, tamaño }) => {
+const Input = ({ placeholder, color, tamaño, }) => {
     return <InputEstilizado placeholder={placeholder} $color={color} $tamaño={tamaño} required />
 }
 

@@ -1,4 +1,4 @@
-import Button from '../Buttons/Buttos'
+import ButtonNavegacion from './ButtonNavegacion'
 import './Header.css'
 
 const Header = () => {
@@ -7,8 +7,8 @@ const Header = () => {
             <header className="Header">
                 <img src="/img/logoMain.png" alt="logo de Alura" />
                 <div className='container-buttons'>
-                    <Button nombre={"Home"} link={"/"} />
-                    <Button nombre={"Nuevo video"} link={"/nuevo-video"} />
+                    <ButtonNavegacion nombre={"Home"} link={"/"} />
+                    <ButtonNavegacion nombre={"Nuevo video"} link={"/nuevo-video"} />
                 </div>
             </header>
 

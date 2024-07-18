@@ -41,6 +41,7 @@ const Home = () => {
                                 sombra={colors["INNOVACIÓN Y GESTIÓN"]} />
                         })}
                     </Categorias>
+
                 }
                 {/* <Modal /> */}
             </Container >

@@ -38,7 +38,7 @@ const Form = () => {
         <div style={{ margin: "20px 12vw" }}>
             <Titulo titulo={"Crear Tarjeta"} tamaño={"36px"} color={"FFFFFF"} negrita={600}
                 border={"2px"} />
-            <FormEstilizado method="" action="">
+            <FormEstilizado method="" onSubmit={console.log("submit")}>
                 <ContainerForm>
                     <DivEstilizado>
                         <Label titulo={"Titulo"} />

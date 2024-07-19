@@ -13,8 +13,11 @@ margin-bottom: 18px;
 }
 `
 
-const Input = ({ placeholder, color, tamaño, }) => {
-    return <InputEstilizado placeholder={placeholder} $color={color} $tamaño={tamaño} required />
+const Input = ({ placeholder, color, tamaño, referencia }) => {
+    return <InputEstilizado placeholder={placeholder} $color={color} $tamaño={tamaño}
+        ref={referencia}
+    />
+
 }
 
 export default Input

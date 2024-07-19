@@ -6,7 +6,7 @@ import Select from "../Select"
 import TextArea from "../TextArea"
 import Button from "../Buttons/Buttos"
 import { GlobalContext } from "../../context/GlobalContext"
-import { useContext } from "react"
+import { useContext, useEffect, useRef } from "react"
 
 //400 px = 29vw
 
@@ -27,27 +27,43 @@ margin-bottom: 40px;
 `
 
 const Form = () => {
-    const { categoriasCards } = useContext(GlobalContext)
+    const { categoriasCards, createCard } = useContext(GlobalContext)
     // console.log(categoriasCards);
-    // const [titulo, setTitulo] = useState("")
-    // const [categoria, setCategoria] = useState("")
-    // const [imagen, setImagen] = useState("")
-    // const [video, setVideo] = useState("")
-    // const [descripcion, setDescripcion] = useState("")
+    const refTitulo = useRef()
+    const refCategoria = useRef()
+    const refImagen = useRef()
+    const refVideo = useRef()
+    const refDescripcion = useRef()
+    const refFormulario = useRef()
+
     return (
         <div style={{ margin: "20px 12vw" }}>
             <Titulo titulo={"Crear Tarjeta"} tamaño={"36px"} color={"FFFFFF"} negrita={600}
                 border={"2px"} />
-            <FormEstilizado method="" onSubmit={console.log("submit")}>
+            <FormEstilizado ref={refFormulario} method="POST" onSubmit={(e) => {
+                e.preventDefault()
+                createCard(
+                    refTitulo.current.value,
+                    refCategoria.current.value,
+                    refImagen.current.value,
+                    refVideo.current.value,
+                    refDescripcion.current.value
+                ).then((res) => { console.log(res); refFormulario.current.reset() })
+                    .catch((err) => console.log(err))
+
+            }}>
                 <ContainerForm>
                     <DivEstilizado>
                         <Label titulo={"Titulo"} />
                         <Input tamaño={"400px"} color={"#A5A5A5"}
-                            placeholder={"ingrese el título"} />
+                            placeholder={"ingrese el título"}
+                            referencia={refTitulo} />
                     </DivEstilizado>
                     <DivEstilizado>
                         <Label titulo={"Categoría"} />
-                        <Select tamaño={"420px"} color={"#A5A5A5"} colorBg={"#191919"} >
+                        <Select tamaño={"420px"} color={"#A5A5A5"}
+                            colorBg={"#191919"}
+                            referencia={refCategoria}>
                             {categoriasCards.map((categoria, index) =>
                                 <option key={index} value={categoria}>
                                     {categoria}
@@ -60,12 +76,14 @@ const Form = () => {
                         <Label titulo={"Imagen"} />
                         <Input tamaño={"470px"} color={"#A5A5A5"}
                             placeholder={"ingrese el enlace de la imagen"}
+                            referencia={refImagen}
                         />
                     </DivEstilizado>
                     <DivEstilizado>
                         <Label titulo={"Video"} />
                         <Input tamaño={"440px"} color={"#A5A5A5"}
                             placeholder={"ingrese el enlace del video"}
+                            referencia={refVideo}
                         />
                     </DivEstilizado>
                 </ContainerForm>
@@ -75,6 +93,7 @@ const Form = () => {
                         <TextArea alto={"200px"} ancho={"470px"}
                             color={"#A5A5A5"}
                             placeholder={"¿De qué se trata este vídeo?"}
+                            referencia={refDescripcion}
                         />
                     </DivEstilizado>
                 </ContainerForm>

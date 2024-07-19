@@ -14,9 +14,9 @@ cursor: pointer;
 }
 `
 
-const Select = ({ children, color, colorBg, tamaño }) => {
+const Select = ({ children, color, colorBg, tamaño, referencia }) => {
     return (
-        <SelectEstilizado $color={color} $colorBg={colorBg} $tamaño={tamaño} >
+        <SelectEstilizado $color={color} $colorBg={colorBg} $tamaño={tamaño} ref={referencia} >
             {children}
         </SelectEstilizado>
     )

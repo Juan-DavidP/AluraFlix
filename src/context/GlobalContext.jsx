@@ -16,32 +16,35 @@ const GlobalContextProvider = ({ children }) => {
         "INNOVACIÓN Y GESTIÓN": []
     });
 
+    const [cardSeleccionada, setCardSeleccionada] = useState(null)
+
     const categoriasCards = Object.keys(cards)
 
     const url = 'http://localhost:3001/videos'
 
-    useEffect(() => {
-        async function getCards() {
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                const categoriasVideos = data.reduce((categorias, card) => {
-                    const categoria = card.category;
-                    for (const nombre of categoriasCards) {
-                        if (!categorias[nombre]) {
-                            categorias[nombre] = [];
-                        }
-                        if (nombre === categoria) {
-                            categorias[categoria].push(card);
-                        }
+    async function getCards() {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            const categoriasVideos = data.reduce((categorias, card) => {
+                const categoria = card.category;
+                for (const nombre of categoriasCards) {
+                    if (!categorias[nombre]) {
+                        categorias[nombre] = [];
                     }
-                    return categorias;
-                }, []);
-                setCards(categoriasVideos)
-            } catch (error) {
-                console.error(error);
-            }
+                    if (nombre === categoria) {
+                        categorias[categoria].push(card);
+                    }
+                }
+                return categorias;
+            }, []);
+            setCards(categoriasVideos)
+        } catch (error) {
+            console.error(error);
         }
+    }
+
+    useEffect(() => {
         getCards()
     }, [])
 
@@ -59,8 +62,8 @@ const GlobalContextProvider = ({ children }) => {
         }).then((res) => res.json()).catch((error) => console.error(error))
     }
 
-    async function editCard(title, category, photo, link, description) {
-        fetch(url, {
+    async function editCard(id, title, category, photo, link, description) {
+        await fetch(`${url}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -70,17 +73,15 @@ const GlobalContextProvider = ({ children }) => {
                 link,
                 description
             })
-        }
-        )
-
+        })
+        getCards()
     }
-
-
 
     return (
         <GlobalContext.Provider value={{
             cards, colors,
-            categoriasCards, createCard, editCard
+            categoriasCards, createCard, editCard,
+            cardSeleccionada, setCardSeleccionada
         }}>
             {children}
         </GlobalContext.Provider>

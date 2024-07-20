@@ -52,22 +52,21 @@ h2{
 
 
 
-const Modal = ({ estado, setEstadoModal }) => {
+const Modal = ({ card, alcerrar }) => {
     return (
         <>
-            {estado &&
+            {!!card &&
                 <Overlay>
-                    <DialogEstilizado open={estado}  >
+                    <DialogEstilizado open={!!card} onClose={alcerrar} >
                         <form method="dialog">
                             <BotonCerrar>
-                                <IoCloseCircleOutline onClick={() => setEstadoModal(false)} />
+                                <IoCloseCircleOutline />
                             </BotonCerrar>
                         </form>
                         <DivEstilizado>
                             <h2>Editar card:</h2>
-                            <FormModal />
+                            <FormModal card={card} />
                         </DivEstilizado>
-
                     </DialogEstilizado>
                 </Overlay>
             }

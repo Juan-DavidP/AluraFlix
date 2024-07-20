@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { TbTrashXFilled } from "react-icons/tb";
 import { BiEditAlt } from "react-icons/bi";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Modal from '../Modal';
+import { GlobalContext } from '../../context/GlobalContext';
 
 const Container = styled.div`
 box-shadow:${props => props.$sombra && `0px 0px 5px 5px ${props.$sombra}`};
@@ -30,17 +31,17 @@ const DivEstilziado = styled.div`
 `
 
 
-const Card = ({ imagen, nombre, sombra }) => {
-    const [estadoModal, setEstadoModal] = useState(false)
+const Card = ({ imagen, nombre, sombra, card }) => {
+    const { setCardSeleccionada } = useContext(GlobalContext)
     return (
         <>
             <Container $sombra={sombra}>
                 <img src={imagen} alt={nombre} style={{ width: "400px" }} />
                 <DivEstilziado $sombra={sombra}>
-                    <button onClick={() => console.log(imagen)}><TbTrashXFilled /> BORRAR</button>
-                    <button onClick={() => setEstadoModal(!estadoModal)}><BiEditAlt /> EDITAR</button>
+                    <button onClick={() => console.log(card.id)}><TbTrashXFilled /> BORRAR</button>
+                    <button onClick={() => setCardSeleccionada(card)}><BiEditAlt /> EDITAR</button>
                 </DivEstilziado>
-                <Modal estado={estadoModal} setEstadoModal={setEstadoModal} alcerrar={false} />
+                <Modal estado={card} alcerrar={setCardSeleccionada} />
             </Container >
         </>
     )

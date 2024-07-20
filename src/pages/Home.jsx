@@ -6,19 +6,23 @@ import Container from "../components/Container"
 import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
 import { GlobalContext } from "../context/GlobalContext"
+import Modal from "../components/Modal"
 
 const Home = () => {
-    const { cards, colors, } = useContext(GlobalContext);
+    const { cards, colors, cardSeleccionada, setCardSeleccionada } = useContext(GlobalContext);
 
     return (
         <>
             <Header />
             <Banner />
             <Container >
-                {cards["FRONT END"].length > 0 &&
+
+                {
+                    cards["FRONT END"].length > 0 &&
                     <Categorias nombre={"FRONT END"} color={colors["FRONT END"]} >
                         {cards["FRONT END"].map((card) => {
                             return <Card key={card["id"]} imagen={card["photo"]} nombre={card["title"]}
+                                card={card}
                                 sombra={colors["FRONT END"]} />
                         })}
                         {/* <Card imagen="/img/frontend1.png" nombre={"Foto"} /> */}
@@ -28,7 +32,8 @@ const Home = () => {
                     <Categorias nombre={"BACK END"} color={"#33de86"} >
                         {cards["BACK END"].map((card) => {
                             return <Card key={card["id"]} imagen={card["photo"]} nombre={card["title"]}
-                                sombra={colors["BACK END"]} />
+                                sombra={colors["BACK END"]}
+                                card={card} />
                         })}
                         {/* <Card imagen="/img/frontend1.png" nombre={"Foto"} sombra={"#33de86"} /> */}
                     </Categorias>
@@ -37,13 +42,13 @@ const Home = () => {
                     cards["INNOVACIÓN Y GESTIÓN"].length > 0 &&
                     < Categorias nombre={"Innovacion y gestión"} color={"#FFBA05"} >
                         {cards["INNOVACIÓN Y GESTIÓN"].map((card) => {
-                            return <Card key={card["id"]} imagen={card["photo"]} nombre={card["title"]}
-                                sombra={colors["INNOVACIÓN Y GESTIÓN"]} />
+                            return <Card key={card["id"]} imagen={card["photo"]}
+                                nombre={card["title"]}
+                                sombra={colors["INNOVACIÓN Y GESTIÓN"]}
+                                card={card} />
                         })}
                     </Categorias>
-
-                }
-                {/* <Modal /> */}
+                }<Modal card={cardSeleccionada} alcerrar={() => setCardSeleccionada(null)} />
             </Container >
             <Footer />
         </>

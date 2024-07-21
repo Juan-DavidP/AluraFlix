@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { TbTrashXFilled } from "react-icons/tb";
 import { BiEditAlt } from "react-icons/bi";
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Modal from '../Modal';
 import { GlobalContext } from '../../context/GlobalContext';
 
@@ -29,17 +29,17 @@ const DivEstilziado = styled.div`
         cursor: pointer;
     }
 `
-
+////// Creación de metodo delete
 
 const Card = ({ imagen, nombre, sombra, card }) => {
-    const { setCardSeleccionada } = useContext(GlobalContext)
+    const { setCardSeleccionada, deleteCard } = useContext(GlobalContext)
     return (
         <>
             <Container $sombra={sombra}>
                 <img src={imagen} alt={nombre} style={{ width: "400px" }} />
                 <DivEstilziado $sombra={sombra}>
-                    <button onClick={() => console.log(card.id)}><TbTrashXFilled /> BORRAR</button>
-                    <button onClick={() => setCardSeleccionada(card)}><BiEditAlt /> EDITAR</button>
+                    <button onClick={() => deleteCard(card.id)}><TbTrashXFilled /> BORRAR</button>
+                    <button onClick={() => setCardSeleccionada(card.id)}><BiEditAlt /> EDITAR</button>
                 </DivEstilziado>
                 <Modal estado={card} alcerrar={setCardSeleccionada} />
             </Container >

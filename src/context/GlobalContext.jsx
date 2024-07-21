@@ -49,7 +49,7 @@ const GlobalContextProvider = ({ children }) => {
     }, [])
 
     async function createCard(title, category, photo, link, description) {
-        return fetch(url, {
+        await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -59,8 +59,10 @@ const GlobalContextProvider = ({ children }) => {
                 link,
                 description
             })
-        }).then((res) => res.json()).catch((error) => console.error(error))
+        }).then((res) => console.log(res)).catch((error) => error)
+        getCards()
     }
+
 
     async function editCard(id, title, category, photo, link, description) {
         await fetch(`${url}/${id}`, {
@@ -77,10 +79,18 @@ const GlobalContextProvider = ({ children }) => {
         getCards()
     }
 
+    async function deleteCard(id) {
+        await fetch(`${url}/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        }).then((res) => console.log(res)).catch((error) => error)
+        getCards()
+    }
+
     return (
         <GlobalContext.Provider value={{
             cards, colors,
-            categoriasCards, createCard, editCard,
+            categoriasCards, createCard, editCard, deleteCard,
             cardSeleccionada, setCardSeleccionada
         }}>
             {children}

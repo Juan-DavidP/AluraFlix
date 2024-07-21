@@ -57,13 +57,15 @@ const Form = () => {
                         <Label titulo={"Titulo"} />
                         <Input tamaño={"400px"} color={"#A5A5A5"}
                             placeholder={"ingrese el título"}
-                            referencia={refTitulo} />
+                            referencia={refTitulo}
+                            requerido={true} />
                     </DivEstilizado>
                     <DivEstilizado>
                         <Label titulo={"Categoría"} />
                         <Select tamaño={"420px"} color={"#A5A5A5"}
                             colorBg={"#191919"}
-                            referencia={refCategoria}>
+                            referencia={refCategoria}
+                            requerido={true}>
                             {categoriasCards.map((categoria, index) =>
                                 <option key={index} value={categoria}>
                                     {categoria}
@@ -77,6 +79,7 @@ const Form = () => {
                         <Input tamaño={"470px"} color={"#A5A5A5"}
                             placeholder={"ingrese el enlace de la imagen"}
                             referencia={refImagen}
+                            requerido={true}
                         />
                     </DivEstilizado>
                     <DivEstilizado>
@@ -84,6 +87,7 @@ const Form = () => {
                         <Input tamaño={"440px"} color={"#A5A5A5"}
                             placeholder={"ingrese el enlace del video"}
                             referencia={refVideo}
+                            requerido={true}
                         />
                     </DivEstilizado>
                 </ContainerForm>
@@ -94,6 +98,7 @@ const Form = () => {
                             color={"#A5A5A5"}
                             placeholder={"¿De qué se trata este vídeo?"}
                             referencia={refDescripcion}
+                            requerido={true}
                         />
                     </DivEstilizado>
                 </ContainerForm>

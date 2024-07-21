@@ -1,5 +1,6 @@
 .banner {
     height: 800px;
+    width: 100%;
     background-image: url('banner.png');
     background-repeat: no-repeat;
     margin-bottom: 0;

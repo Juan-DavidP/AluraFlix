@@ -1,4 +1,4 @@
-.container{
+.container {
     margin-left: 40px;
     display: flex;
     flex-direction: column;
@@ -21,6 +21,7 @@
 .cards {
     display: flex;
     gap: 30px;
+    row-gap: 40px;
     flex-wrap: wrap;
     /* overflow-x: auto;
     scrollbar-color: #ff0000 #cccccc; */

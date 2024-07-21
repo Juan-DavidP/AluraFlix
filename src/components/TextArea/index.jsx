@@ -11,10 +11,11 @@ border-radius: 15px;
 padding: 10px 10px;
 `
 
-const TextArea = ({ placeholder, color, alto, ancho, referencia }) => {
+const TextArea = ({ placeholder, color, alto, ancho, referencia, requerido }) => {
     return <TextAreaEstilizado placeholder={placeholder} $color={color}
         $alto={alto} $ancho={ancho}
         ref={referencia}
+        required={requerido}
     />
 }
 

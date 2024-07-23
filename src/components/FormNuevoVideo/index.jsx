@@ -36,6 +36,10 @@ const Form = () => {
     const refDescripcion = useRef()
     const refFormulario = useRef()
 
+    useEffect(() => {
+        console.log(refTitulo.current.validity);
+    }, [])
+
     return (
         <div style={{ margin: "20px 12vw" }}>
             <Titulo titulo={"Crear Tarjeta"} tamaño={"36px"} color={"FFFFFF"} negrita={600}
@@ -58,7 +62,9 @@ const Form = () => {
                         <Input tamaño={"400px"} color={"#A5A5A5"}
                             placeholder={"ingrese el título"}
                             referencia={refTitulo}
-                            requerido={true} />
+                            name={"titulo"}
+                            requerido={true}
+                        />
                     </DivEstilizado>
                     <DivEstilizado>
                         <Label titulo={"Categoría"} />
@@ -79,6 +85,7 @@ const Form = () => {
                         <Input tamaño={"470px"} color={"#A5A5A5"}
                             placeholder={"ingrese el enlace de la imagen"}
                             referencia={refImagen}
+                            name={"imagen"}
                             requerido={true}
                         />
                     </DivEstilizado>
@@ -87,6 +94,7 @@ const Form = () => {
                         <Input tamaño={"440px"} color={"#A5A5A5"}
                             placeholder={"ingrese el enlace del video"}
                             referencia={refVideo}
+                            name={"video"}
                             requerido={true}
                         />
                     </DivEstilizado>

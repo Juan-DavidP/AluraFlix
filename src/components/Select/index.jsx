@@ -17,7 +17,9 @@ cursor: pointer;
 const Select = ({ children, color, colorBg, tamaño, referencia, requerido }) => {
     return (
         <SelectEstilizado $color={color} $colorBg={colorBg} $tamaño={tamaño}
-            ref={referencia} required={requerido}>
+            ref={referencia}
+            name="categorias"
+            required={requerido}>
             {children}
         </SelectEstilizado>
     )

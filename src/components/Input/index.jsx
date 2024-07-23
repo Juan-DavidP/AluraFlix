@@ -13,9 +13,9 @@ margin-bottom: 18px;
 }
 `
 
-const Input = ({ placeholder, color, tamaño, referencia, requerido }) => {
+const Input = ({ placeholder, color, tamaño, referencia, name, requerido }) => {
     return <InputEstilizado placeholder={placeholder} $color={color} $tamaño={tamaño}
-        ref={referencia} required={requerido}
+        ref={referencia} name={name} required={requerido}
     />
 
 }

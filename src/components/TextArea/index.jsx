@@ -14,6 +14,7 @@ padding: 10px 10px;
 const TextArea = ({ placeholder, color, alto, ancho, referencia, requerido }) => {
     return <TextAreaEstilizado placeholder={placeholder} $color={color}
         $alto={alto} $ancho={ancho}
+        name="Descripcion"
         ref={referencia}
         required={requerido}
     />

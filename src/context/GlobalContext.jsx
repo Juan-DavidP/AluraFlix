@@ -46,7 +46,7 @@ const GlobalContextProvider = ({ children }) => {
 
     useEffect(() => {
         getCards()
-    }, [])
+    }, [cards])
 
     async function createCard(title, category, photo, link, description) {
         await fetch(url, {
@@ -59,8 +59,7 @@ const GlobalContextProvider = ({ children }) => {
                 link,
                 description
             })
-        }).then((res) => console.log(res)).catch((error) => error)
-        getCards()
+        }).then({/*(res) => console.log(res)*/ }).catch((error) => error)
     }
 
 
@@ -76,15 +75,13 @@ const GlobalContextProvider = ({ children }) => {
                 description
             })
         })
-        getCards()
     }
 
     async function deleteCard(id) {
         await fetch(`${url}/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
-        }).then((res) => console.log(res)).catch((error) => error)
-        getCards()
+        }).then({/*(res) => console.log(res)*/}).catch((error) => error)
     }
 
     return (

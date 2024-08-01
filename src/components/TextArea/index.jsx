@@ -9,6 +9,8 @@ height: ${props => props.$alto && props.$alto};
 border: 2px solid ${pros => pros.$color};
 border-radius: 15px;
 padding: 10px 10px;
+&::placeholder{
+    color: var(--placeholder-color)}
 `
 
 const TextArea = ({ placeholder, color, alto, ancho, referencia, requerido }) => {
@@ -17,6 +19,8 @@ const TextArea = ({ placeholder, color, alto, ancho, referencia, requerido }) =>
         name="Descripcion"
         ref={referencia}
         required={requerido}
+        style={{ '--placeholder-color': '#A5A5A5' }}
+
     />
 }
 

@@ -7,6 +7,7 @@ import TextArea from "../TextArea"
 import Button from "../Buttons/Buttos"
 import { GlobalContext } from "../../context/GlobalContext"
 import { useContext, useEffect, useRef } from "react"
+import { ErrorContext } from "../../context/ErrorContext"
 
 //400 px = 29vw
 
@@ -28,7 +29,8 @@ margin-bottom: 40px;
 
 const Form = () => {
     const { categoriasCards, createCard } = useContext(GlobalContext)
-    // console.log(categoriasCards);
+    const { verificarCampos } = useContext(ErrorContext)
+
     const refTitulo = useRef()
     const refCategoria = useRef()
     const refImagen = useRef()
@@ -36,9 +38,18 @@ const Form = () => {
     const refDescripcion = useRef()
     const refFormulario = useRef()
 
-    useEffect(() => {
-        console.log(refTitulo.current.validity);
-    }, [])
+    const datosFormulario = {
+        title: refTitulo.current?.value,
+        category: refCategoria.current?.value,
+        photo: refImagen.current?.value,
+        link: refVideo.current?.value,
+        description: refDescripcion.current?.value
+    }
+    /* useEffect(() => {
+         refTitulo.current.onblur = () => {
+             console.log("hola");
+         }
+     }, [])*/
 
     return (
         <div style={{ margin: "20px 12vw" }}>
@@ -46,16 +57,19 @@ const Form = () => {
                 border={"2px"} />
             <FormEstilizado ref={refFormulario} method="POST" onSubmit={(e) => {
                 e.preventDefault()
-                createCard(
-                    refTitulo.current.value,
-                    refCategoria.current.value,
-                    refImagen.current.value,
-                    refVideo.current.value,
-                    refDescripcion.current.value
-                ).then((res) => { console.log(res); refFormulario.current.reset() })
-                    .catch((err) => console.log(err))
+                verificarCampos(refFormulario)
+                if (verificarCampos(refFormulario)) {
+                    createCard(
+                        datosFormulario)
+                        .then((res) => {
+                            // console.log(res);
+                            refFormulario.current.reset()
+                        })
+                        .catch((err) => console.log(err))
 
-            }}>
+                }
+            }
+            }>
                 <ContainerForm>
                     <DivEstilizado>
                         <Label titulo={"Titulo"} />
@@ -63,7 +77,7 @@ const Form = () => {
                             placeholder={"ingrese el título"}
                             referencia={refTitulo}
                             name={"titulo"}
-                            requerido={true}
+                            requerido={false}
                         />
                     </DivEstilizado>
                     <DivEstilizado>
@@ -71,7 +85,7 @@ const Form = () => {
                         <Select tamaño={"420px"} color={"#A5A5A5"}
                             colorBg={"#191919"}
                             referencia={refCategoria}
-                            requerido={true}>
+                            requerido={false}>
                             {categoriasCards.map((categoria, index) =>
                                 <option key={index} value={categoria}>
                                     {categoria}
@@ -86,7 +100,7 @@ const Form = () => {
                             placeholder={"ingrese el enlace de la imagen"}
                             referencia={refImagen}
                             name={"imagen"}
-                            requerido={true}
+                            requerido={false}
                         />
                     </DivEstilizado>
                     <DivEstilizado>
@@ -95,7 +109,7 @@ const Form = () => {
                             placeholder={"ingrese el enlace del video"}
                             referencia={refVideo}
                             name={"video"}
-                            requerido={true}
+                            requerido={false}
                         />
                     </DivEstilizado>
                 </ContainerForm>
@@ -106,7 +120,7 @@ const Form = () => {
                             color={"#A5A5A5"}
                             placeholder={"¿De qué se trata este vídeo?"}
                             referencia={refDescripcion}
-                            requerido={true}
+                            requerido={false}
                         />
                     </DivEstilizado>
                 </ContainerForm>

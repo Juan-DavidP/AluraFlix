@@ -10,7 +10,6 @@ import Modal from "../components/Modal"
 
 const Home = () => {
     const { cards, colors, cardSeleccionada, setCardSeleccionada } = useContext(GlobalContext);
-
     return (
         <>
             <Header />
@@ -29,7 +28,7 @@ const Home = () => {
                     </Categorias>}
                 {
                     cards["BACK END"].length > 0 &&
-                    <Categorias nombre={"BACK END"} color={"#33de86"} >
+                    <Categorias nombre={"BACK END"} color={colors["BACK END"]} >
                         {cards["BACK END"].map((card) => {
                             return <Card key={card["id"]} imagen={card["photo"]} nombre={card["title"]}
                                 sombra={colors["BACK END"]}
@@ -40,7 +39,7 @@ const Home = () => {
                 }
                 {
                     cards["INNOVACIÓN Y GESTIÓN"].length > 0 &&
-                    < Categorias nombre={"Innovacion y gestión"} color={"#FFBA05"} >
+                    < Categorias nombre={"Innovacion y gestión"} color={colors["INNOVACIÓN Y GESTIÓN"]} >
                         {cards["INNOVACIÓN Y GESTIÓN"].map((card) => {
                             return <Card key={card["id"]} imagen={card["photo"]}
                                 nombre={card["title"]}

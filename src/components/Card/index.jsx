@@ -36,7 +36,7 @@ const Card = ({ imagen, nombre, sombra, card }) => {
     return (
         <>
             <Container $sombra={sombra}>
-                <img src={imagen} alt={nombre} style={{ width: "400px" }} />
+                <img src={imagen} alt={nombre} style={{ width: "400px", height:"225px"}} />
                 <DivEstilziado $sombra={sombra}>
                     <button onClick={() => deleteCard(card.id)}><TbTrashXFilled /> BORRAR</button>
                     <button onClick={() => setCardSeleccionada(card)}><BiEditAlt /> EDITAR</button>

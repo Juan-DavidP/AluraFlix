@@ -48,7 +48,8 @@ const GlobalContextProvider = ({ children }) => {
         getCards()
     }, [cards])
 
-    async function createCard(title, category, photo, link, description) {
+    async function createCard(datos) {
+        const { title, category, photo, link, description } = datos
         await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -59,7 +60,7 @@ const GlobalContextProvider = ({ children }) => {
                 link,
                 description
             })
-        }).then({/*(res) => console.log(res)*/ }).catch((error) => error)
+        }).catch((error) => error)
     }
 
 
@@ -81,7 +82,7 @@ const GlobalContextProvider = ({ children }) => {
         await fetch(`${url}/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
-        }).then({/*(res) => console.log(res)*/}).catch((error) => error)
+        }).then({/*(res) => console.log(res)*/ }).catch((error) => error)
     }
 
     return (
